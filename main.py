@@ -1,12 +1,10 @@
-import pandas
 import yfinance as yf
 import csv
+from tabulate import tabulate
 
 
 #getting user input
-nav=input("Ievadiet 0, ja vēlaties ievadīt datus, 1 ja vēlaties apskatīt statistiku, -1, ja vēlaties iziet no programmas: ")
-
-
+nav=input("Ievadiet 0, ja vēlaties ievadīt datus, 1 ja vēlaties apskatīt statistiku, -1, ja vēlaties iziet no programmas, 2 ja vēlaties apskatīt visus datus: ")
 
 while nav=="0":
     stock = input("Lūdzu ievadiet vēlamas akcijas tickeri (piem., AAPL): ")
@@ -88,6 +86,14 @@ if nav=="1":
             min_return=return_value
             info=data[i]
     print("Viesmazākā relatīvā pelņa ir", info[0], "akcijai ar peļņu", info[8], "procentu apmērā laika posmā no", info[2], "līdz", info[3])
+elif nav=="2":
+    data=[]
+    with open("data.csv", "r") as f:
+        next(f)
+        for line in f:
+            row=line.rstrip().split(",")
+            data.append(row)
+    print(tabulate(data, headers=["Stock"," ", "Sākuma datums", "Beigu datums", "Iemaksātais daudzums", "Akciju daudzums", "Portfeļa vērtība", "Pelņa","Peļņa, %"]))
 
 else:
     exit()
