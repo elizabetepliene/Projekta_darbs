@@ -76,8 +76,9 @@ if nav=="1":
         if(return_value>max_return):
             max_return=return_value
             info=data[i]
-    print("Vislielākā procentuālā peļņa: ")        
-    print(info[0], info[2],"līdz",info[3],info[8],"procentu peļņa")
+    print("Vislielākā procentuālā peļņa: ")   
+    print(["Stock"," ", "Start date", "End date", "Ieguldītā sum", "Akcijas", "Akcijas vērtība", "Pelņa","Peļņa, %"])
+    print(info)
 
     min_return = float(data[0][8])
     info=[]
@@ -87,8 +88,9 @@ if nav=="1":
             min_return=return_value
             info=data[i]
     print("Vismazākā procentuālā peļņa: ")        
-    print(info[0], info[2],"līdz",info[3],info[8],"procentu peļņa")       
-
+    print(["Stock"," ", "Start date", "End date", "Ieguldītā sum", "Akcijas", "Akcijas vērtība", "Pelņa","Peļņa, %"])
+    print(info)
+    
 elif nav=="2":
     data=[]
     with open("data.csv", "r") as f:
@@ -96,7 +98,7 @@ elif nav=="2":
         for line in f:
             row=line.rstrip().split(",")
             data.append(row)
-    print(tabulate(data, headers=["Stock"," ", "Start date", "End date", "Ieguldītā sum", "Akcijas", "Akcijas vērtība", "Pelņa","Peļņa, %"]))
+    print(tabulate(data, headers=["Stock"," ", "Start date", "End date", "Ieguldītā sum", "Akcijas", "Akcijas vērtība", "Pelņa","Peļņa, %"], numalign="right"))
 
 else:
     exit()
